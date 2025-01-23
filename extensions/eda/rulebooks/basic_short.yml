@@ -4,10 +4,9 @@
 - name: Basic short
   hosts: all
   sources:
-    - ansible.eda.range:
-        limit: 10
-        delay: 0.5
-  rules:
+    - ansible.eda.webhook:
+        port: 5000
+   rules:
     - name: Run job template when the event is aaa
       condition: event.letters == "aaa"
       actions:
