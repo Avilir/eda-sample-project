@@ -8,7 +8,7 @@
         port: 5000
   rules:
     - name: Run job template when the event is aaa
-      condition: event.letters == "aaa"
+      condition: event.payload.letters== "aaa"
       actions:
         - run_job_template:
             organization: Default
