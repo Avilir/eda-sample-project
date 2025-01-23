@@ -13,6 +13,10 @@
         - run_job_template:
             organization: Default
             name: run_basic
+            job_args:
+              limit: "{{ event.payload.meta.hosts }}"
 
         - debug:
             msg: "Basic short rulebook, event {{ event }}"
+
+  execution_strategy: "parallel"
