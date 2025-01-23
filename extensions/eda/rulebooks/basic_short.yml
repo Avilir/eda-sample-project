@@ -8,15 +8,12 @@
         limit: 10
         delay: 0.5
   rules:
-    - name: Run JT at 8
-      condition: event.letters[0] == "a"
+    - name: Run job template when the event is aaa
+      condition: event.letters == "aaa"
       actions:
         - run_job_template:
             organization: Default
             name: run_basic
-            job_args:
-              extra_vars:
-                fake_execution_time: "5"
 
         - debug:
-            msg: "Basic short rulebook, event {{ event.i }}"
+            msg: "Basic short rulebook, event {{ event }}"
