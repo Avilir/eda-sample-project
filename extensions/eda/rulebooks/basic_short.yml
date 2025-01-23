@@ -6,7 +6,7 @@
   sources:
     - ansible.eda.webhook:
         port: 5000
-   rules:
+  rules:
     - name: Run job template when the event is aaa
       condition: event.letters == "aaa"
       actions:
