@@ -1,20 +1,15 @@
 ---
 # Basic rulebook with job template, 
 # to be used with https://github.com/Alex-Izquierdo/eda-awx-project-sample
-- name: Basic short
+- name: Basic Batch
   hosts: all
   sources:
-    - ansible.eda.webhook:
-        port: 5000
-    - ansible.eda.generic:
-        # shutdown_after: 3600
-        repeat_count: 20
-        create_index: "index"
-        payload:
-          - state: "run"
+    - ansible.eda.range:
+        limit: 20
+        #delay: 0.5
   rules:
-    - name: Run a batch of 20 job template
-      condition: event.payload.state== "run"
+    - name: Run JT at 8
+      condition: event.i < 800
       actions:
         - run_job_template:
             organization: Default
