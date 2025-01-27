@@ -1,0 +1,23 @@
+---
+# Basic rulebook with job template, 
+# to be used with https://github.com/Alex-Izquierdo/eda-awx-project-sample
+- name: Basic short
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        port: 5000
+    - ansible.eda.generic:
+        # shutdown_after: 3600
+        repeat_count: 20
+        create_index: "index"
+        payload:
+          - state: "run"
+  rules:
+    - name: Run a batch of 20 job template
+      condition: event.payload.state== "run"
+      actions:
+        - run_job_template:
+            organization: Default
+            name: run_basic
+
+  execution_strategy: "parallel"
